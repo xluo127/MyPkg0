@@ -1,5 +1,5 @@
 
-module Sog1
+module MyPkg0
 
     export sog
     """
