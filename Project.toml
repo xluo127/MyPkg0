@@ -1,0 +1,13 @@
+name = "MyPkg0"
+uuid = "9bedd3eb-aa3d-443c-869d-194f9978ecb4"
+authors = ["Xiaotian Luo <1521338458@qq.com> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
