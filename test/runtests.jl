@@ -16,4 +16,8 @@ using Test
     @test isequal(sog(["a", "a", "a", 'a']), Bool[1, 0, 0, 1])
     @test isequal(sog([1, 1.0, 1.00000]), Bool[1, 0, 0])
     @test isequal(sog([Inf, Inf32, Inf64]), Bool[1, 0, 0])
+
+    #For Vectors
+    #@test isequal(sog([[], []]), Bool[1, 0])
+    @test isequal(sog([[1, 1, 1, 2, 2], [1.5, 1.5, 20.0, 3.0, 3.0]]), Bool[1, 0, 1, 1, 0])
 end
