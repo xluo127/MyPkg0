@@ -23,7 +23,10 @@ module MyPkg0
         end
 
         len = length(x)
-        iVector = x 
+        iVector = x
+        
+        lenv=1
+
         if len == 1
             return [true]
         end
