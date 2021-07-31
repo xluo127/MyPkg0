@@ -25,17 +25,23 @@ function sog(x=[])
     iVector = x
     len = length(x)
     lenv = length(x[1])
-    
-    if lenv >= 2
-        #temp = [iVector[i][1] for i in 1:len]
-        oVector = Vector{Bool}(undef, lenv)
-        oVector[1] = Bool(1)
-        for i in 2:lenv
-            oVector[i] = !isequal([iVector[j][i] for j in 1:len], [iVector[j][i-1] for j in 1:len])    
-        end
-        return oVector
-    end       
 
+    if typeof(iVector[1]) <: Vector{}
+        if lenv == 1
+            return [true]
+        end
+
+        if lenv >= 2
+            #temp = [iVector[i][1] for i in 1:len]
+            oVector = Vector{Bool}(undef, lenv)
+            oVector[1] = Bool(1)
+            for i in 2:lenv
+                oVector[i] = !isequal([iVector[j][i] for j in 1:len], [iVector[j][i-1] for j in 1:len])    
+            end
+            return oVector
+        end 
+    end
+    
     if len == 1
         return [true]
     end
