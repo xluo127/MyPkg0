@@ -24,9 +24,10 @@ function sog(x=[])
 
     iVector = x
     len = length(x)
-    lenv = length(x[1])
+    #lenv = length(x[1])
 
     if typeof(iVector[1]) <: Vector{}
+        lenv = length(x[1])
         if lenv == 1
             return [true]
         end
