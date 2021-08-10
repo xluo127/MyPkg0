@@ -53,7 +53,7 @@ function sog(x=[])
     
     r = iVector[1:(len-1)] .=== iVector[2:len]
     r1 = Vector{Bool}(replace(iszero, r))
-    oVector = append!([1], r1)
+    oVector = Vector{Bool}(append!([1], r1))
     
     
     """
