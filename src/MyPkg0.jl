@@ -52,7 +52,7 @@ function sog(x=[])
     end
     
     oVector0 = append!([1], diff(iVector))
-    oVector = Vector{Bool}(replace(!iszero, r1))
+    oVector = Vector{Bool}(replace(!iszero, oVector0))
     
 
     """
