@@ -50,12 +50,20 @@ function sog(x=[])
     if len == 1
         return [true]
     end
-        
+    
+    oVector0 = append!([1], diff(iVector))
+    oVector = Vector{Bool}(replace(!iszero, r1))
+    
+
+    """
     oVector = Vector{Bool}(undef, len)
     oVector[1] = Bool(1)
     for i in 2:len
         oVector[i] = !isequal(iVector[i], iVector[i-1])
     end
+    """
+
+
     return oVector
 end
 end
