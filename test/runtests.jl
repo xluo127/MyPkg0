@@ -19,7 +19,7 @@ using Random
     @test isequal(sog([Inf, Inf32, Inf64]), Bool[1, 0, 0])
 
     #For Vectors
-    @test isequal(sog([[], []]), Bool[1, 0])
+    @test isequal(sog([[], []]),nothing)
     @test isequal(sog([[1, 1, 1, 2, 2], [1.5, 1.5, 20.0, 3.0, 3.0]]), Bool[1, 0, 1, 1, 0])
     @time sog(rand(1:100, 10^6))
 end

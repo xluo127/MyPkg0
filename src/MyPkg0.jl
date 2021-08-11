@@ -32,6 +32,10 @@ function sog(x=[])
 
     if typeof(iVector[1]) <: Vector{}           #For Vector of Vectors
         lenv = length(x[1])
+        if lenv == 0
+            return nothing 
+        end    
+
         if lenv == 1
             return [true]
         end
