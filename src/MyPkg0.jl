@@ -37,12 +37,19 @@ function sog(x=[])
         end
 
         if lenv >= 2
+            r0 = map(sog, iVector)
+            rInt = Vector{Vector{Int64}}(r0)
+            oVector = Vector{Bool}(replace(!iszero, sum(rInt)))
+
+"""
             #temp = [iVector[i][1] for i in 1:len]
             oVector = Vector{Bool}(undef, lenv)
             oVector[1] = Bool(1)
             for i in 2:lenv
                 oVector[i] = !isequal([iVector[j][i] for j in 1:len], [iVector[j][i-1] for j in 1:len])    
             end
+"""
+
             return oVector
         end 
     end
