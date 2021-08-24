@@ -45,15 +45,6 @@ function sog(x=[])
             rInt = Vector{Vector{Int64}}(r0)
             oVector = Vector{Bool}(replace(!iszero, sum(rInt)))
 
-"""
-            #temp = [iVector[i][1] for i in 1:len]
-            oVector = Vector{Bool}(undef, lenv)
-            oVector[1] = Bool(1)
-            for i in 2:lenv
-                oVector[i] = !isequal([iVector[j][i] for j in 1:len], [iVector[j][i-1] for j in 1:len])    
-            end
-"""
-
             return oVector
         end 
     end
@@ -65,15 +56,6 @@ function sog(x=[])
     r = iVector[1:(len-1)] .=== iVector[2:len]
     r1 = Vector{Bool}(replace(iszero, r))
     oVector = Vector{Bool}(append!([1], r1))
-    
-    
-    """
-    oVector = Vector{Bool}(undef, len)
-    oVector[1] = Bool(1)
-    for i in 2:len
-        oVector[i] = !isequal(iVector[i], iVector[i-1])
-    end
-    """
 
 
     return oVector
