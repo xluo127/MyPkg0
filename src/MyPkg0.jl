@@ -1,7 +1,7 @@
 
 module MyPkg0
 
-export sog
+export sog, tmpsog, zo
 """
     sog(x)
 
@@ -79,3 +79,28 @@ function sog(x=[])
     return oVector
 end
 end
+
+
+function zo(re, xi)
+    for j in 2:length(re)
+        re[j] = re[j]==1 ? 1 : !(xi[j]===xi[j-1])
+    end
+    return re
+end
+    
+    
+function tmpsog(x)
+    re = zeros(Bool, length(x[1]))
+    re[1] = 1
+    for i in 1:length(x)
+        re = zo(re, x[i])
+    end
+    return re
+end
+
+
+
+
+'''
+
+'''
