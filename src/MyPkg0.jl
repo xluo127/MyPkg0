@@ -60,7 +60,7 @@ function sog(x=[])
 
     return oVector
 end
-end
+
 
 
 function zo(re, xi)
@@ -80,9 +80,4 @@ function tmpsog(x)
     return re
 end
 
-
-
-
-'''
-
-'''
+end
