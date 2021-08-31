@@ -65,7 +65,7 @@ end
 
 function zo(re, xi)
     for j in 2:length(re)
-        re[j] = re[j]==1 ? 1 : !(xi[j]===xi[j-1])
+        @inbounds re[j] = re[j]==1 ? 1 : !(xi[j]===xi[j-1])
     end
     return re
 end
