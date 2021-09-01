@@ -1,7 +1,6 @@
-
 module MyPkg0
 
-export sog, tmpsog, zo
+export sog, tmpsog, zo, zo1, newsog, newsog2
 """
     sog(x)
 
@@ -65,7 +64,7 @@ end
 
 function zo(re, xi)
     for j in 2:length(re)
-        @inbounds re[j] = re[j]==1 ? 1 : !(xi[j]===xi[j-1])
+        re[j] = re[j]==1 ? 1 : !(xi[j]===xi[j-1])
     end
     return re
 end
@@ -80,4 +79,42 @@ function tmpsog(x)
     return re
 end
 
+function zo1(re, xi)
+    for j in 2:length(re)
+        @inbounds re[j] = re[j]==1 ? 1 : !(xi[j]===xi[j-1])
+    end
+    return re
+end
+    
+    
+function newsog(x)
+    re = zeros(Bool, length(x[1]))
+    re[1] = 1
+    for i in 1:length(x)
+        re = zo1(re, x[i])
+    end
+    return re
+end
+
+
+
+end
+
+function ini0(x1)
+    len = length(x1)
+    re = zeros(Bool, len)
+    re[1] = 1
+    for j in 2:len
+        @inbounds re[j] = !(x1[j]===x1[j-1])
+    end
+    return re
+end
+
+
+function newsog2(x)
+    re = ini0(x[1])
+    for i in 2:length(x)
+        re = zo1(re, x[i])
+    end
+    return re
 end
