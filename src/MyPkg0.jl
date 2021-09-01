@@ -98,7 +98,6 @@ end
 
 
 
-end
 
 function ini0(x1)
     len = length(x1)
@@ -117,4 +116,8 @@ function newsog2(x)
         re = zo1(re, x[i])
     end
     return re
+end
+
+
+
 end
