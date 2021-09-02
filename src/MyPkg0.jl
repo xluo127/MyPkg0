@@ -1,6 +1,6 @@
 module MyPkg0
 
-export sog, tmpsog, zo, zo1, zo3, newsog, newsog2, newsog3
+export sog, tmpsog, zo, zo1, zo3, newsog, newsog2, newsog3, newsog4
 """
     sog(x)
 
@@ -133,5 +133,14 @@ function newsog3(x)
     end
     return re
 end
+
+function newsog4(x, orders = eachindex(x))
+    re = ini0(orders[1])
+    for i in orders[2:end]
+        re = zo3(re, x[i])
+    end
+    return re
+end
+
 
 end
