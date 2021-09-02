@@ -1,7 +1,5 @@
 module MyPkg0
 
-using .Threads
-
 export sog, tmpsog, zo, zo1, zo3, newsog, newsog2，newsog3, ini0
 """
     sog(x)
@@ -121,7 +119,7 @@ function newsog2(x)
 end
 
 function zo3(re, xi)
-    @threads for j in 2:length(re)
+    Threads.@threads for j in 2:length(re)
         @inbounds re[j] = re[j]==1 ? 1 : !(xi[j]===xi[j-1])
     end
     return re
