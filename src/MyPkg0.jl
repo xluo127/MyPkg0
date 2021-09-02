@@ -1,6 +1,6 @@
 module MyPkg0
 
-export sog, tmpsog, zo, zo1, zo3, newsog, newsog2，newsog3, ini0
+export sog, tmpsog, zo, zo1, zo3, newsog, newsog2, newsog3
 """
     sog(x)
 
@@ -127,9 +127,8 @@ end
     
     
 function newsog3(x)
-    re = zeros(Bool, length(x[1]))
-    re[1] = 1
-    for i in 1:length(x)
+    re = ini0(x[1])
+    for i in 2:length(x)
         re = zo3(re, x[i])
     end
     return re
