@@ -135,7 +135,7 @@ function newsog3(x)
 end
 
 function newsog4(x, orders = eachindex(x))
-    re = ini0(orders[1])
+    re = ini0(x[orders[1]])
     for i in orders[2:end]
         re = zo3(re, x[i])
     end
