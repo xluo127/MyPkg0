@@ -1,6 +1,8 @@
 module MyPkg0
 
-export sog, tmpsog, zo, zo1, newsog, newsog2
+using .Threads
+
+export sog, tmpsog, zo, zo1, zo3, newsog, newsog2，newsog3, ini0
 """
     sog(x)
 
@@ -118,6 +120,21 @@ function newsog2(x)
     return re
 end
 
-
+function zo3(re, xi)
+    @threads for j in 2:length(re)
+        @inbounds re[j] = re[j]==1 ? 1 : !(xi[j]===xi[j-1])
+    end
+    return re
+end
+    
+    
+function newsog3(x)
+    re = zeros(Bool, length(x[1]))
+    re[1] = 1
+    for i in 1:length(x)
+        re = zo3(re, x[i])
+    end
+    return re
+end
 
 end
