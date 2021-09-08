@@ -152,15 +152,25 @@ end
 """
     select_if(df, predicate, elementwise_or_not, any_or_all)
 
-This function is aim to select DataFrame columns based on a predicate applied to the columns or a logical vector. `df` is the DataFrame, 
-`predicate` can be a predicate function for columns or a `Bool` `Vector` with the length of number of columns. `elementwise_or_not` takes a 
-`Bool` value that is `true` in default. Change `elementwise_or_not` to `false` will let the predicate apply to the DataFrame columnwise. 
-`any_or_all` also takes a `Bool` value with a default value `true` and it determines to apply any or all predicate to the DataFrame when 
-`elementwise_or_not` = `true`
+This function is aim to select `DataFrame` columns based on a predicate applied to the columns or a logical vector. 
+
+Keyword arguments
+≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+
+  •  `df` is the DataFrame.
+
+  •  `predicate` can be a predicate function for columns or a `Bool` `Vector` with the length of number of columns.
+
+  •  `elementwise_or_not` takes a `Bool` value that is `true` in default. Change `elementwise_or_not` to `false` will
+   let the predicate apply to the DataFrame columnwise.
+
+  •  `any_or_all` also takes a `Bool` value with a default value `true` and it determinesto apply any or all predicate
+   to the DataFrame when `elementwise_or_not` = `true`.
+
 
 Examples:
 ≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-
+`
 julia> df1 = DataFrame([missing 1 2 3; missing 2 missing 4; 1 4 2 5], :auto)
 3×4 DataFrame
  Row │ x1       x2      x3       x4
@@ -199,6 +209,7 @@ julia> select_if(df1, pre1, 0)
    2 │      4
    3 │      5
 
+`
 """
 function select_if(df, predicate, elementwise_or_not = true, any_or_all = true)
     if typeof(predicate) == Vector{Bool}
