@@ -1,6 +1,6 @@
 module MyPkg0
 
-export sog, tmpsog, zo, zo1, zo3, newsog, newsog2, newsog3, newsog4
+export sog, tmpsog, zo, zo1, zo3, newsog, newsog2, newsog3, newsog4, select_if1
 """
     sog(x)
 
@@ -135,12 +135,25 @@ function newsog3(x)
 end
 
 function newsog4(x, orders = eachindex(x))
+    if length(eachindex(x)) != length(orders)
+        println("Please specify the order of columns correctly! Number of columns is the length of order.")
+        return nothing
+    end
     re = ini0(x[orders[1]])
     for i in orders[2:end]
         re = zo3(re, x[i])
     end
     return re
 end
+
+function select_if1(df, predicate, any_or_all = true)
+    if any_or_all == true indices = map(x -> any(predicate, x), eachcol(df))
+    else indices = map(x -> all(predicate, x), eachcol(df)); end; return df[:, indices]
+end
+
+
+
+
 
 
 end
