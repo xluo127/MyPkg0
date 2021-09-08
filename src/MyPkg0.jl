@@ -170,7 +170,7 @@ Keyword arguments
 
 Examples:
 ≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-`
+
 julia> df1 = DataFrame([missing 1 2 3; missing 2 missing 4; 1 4 2 5], :auto)
 3×4 DataFrame
  Row │ x1       x2      x3       x4
@@ -209,7 +209,7 @@ julia> select_if(df1, pre1, 0)
    2 │      4
    3 │      5
 
-`
+
 """
 function select_if(df, predicate, elementwise_or_not = true, any_or_all = true)
     if typeof(predicate) == Vector{Bool}
