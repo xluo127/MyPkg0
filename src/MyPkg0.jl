@@ -1,6 +1,6 @@
 module MyPkg0
 
-export sog, tmpsog, zo, zo1, zo3, newsog, newsog2, newsog3, newsog4, select_if1
+export sog, tmpsog, zo, zo1, zo3, newsog, newsog2, newsog3, newsog4, select_if
 """
     sog(x)
 
@@ -13,6 +13,7 @@ When taking `Vector` of `Vectors`, the length of output should the same as the l
 one element with the previous one on the same position for each `Vector`.
 
 Examples:
+≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
     sog([1,2,2,2,1,3,3,1,1]) returns: [true, true, false, false, true, true, false, true, false]
     sog() returns: nothing
@@ -146,9 +147,72 @@ function newsog4(x, orders = eachindex(x))
     return re
 end
 
-function select_if1(df, predicate, any_or_all = true)
-    if any_or_all == true indices = map(x -> any(predicate, x), eachcol(df))
-    else indices = map(x -> all(predicate, x), eachcol(df)); end; return df[:, indices]
+
+
+"""
+    select_if(df, predicate, elementwise_or_not, any_or_all)
+
+This function is aim to select DataFrame columns based on a predicate applied to the columns or a logical vector. `df` is the DataFrame, 
+`predicate` can be a predicate function for columns or a `Bool` `Vector` with the length of number of columns. `elementwise_or_not` takes a 
+`Bool` value that is `true` in default. Change `elementwise_or_not` to `false` will let the predicate apply to the DataFrame columnwise. 
+`any_or_all` also takes a `Bool` value with a default value `true` and it determines to apply any or all predicate to the DataFrame when 
+`elementwise_or_not` = `true`
+
+Examples:
+≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+
+julia> df1 = DataFrame([missing 1 2 3; missing 2 missing 4; 1 4 2 5], :auto)
+3×4 DataFrame
+ Row │ x1       x2      x3       x4
+     │ Int64?   Int64?  Int64?   Int64?
+─────┼──────────────────────────────────
+   1 │ missing       1        2       3
+   2 │ missing       2  missing       4
+   3 │ 1             4        2       5
+
+julia> select_if(df1, [false, true, true, true])
+3×3 DataFrame
+ Row │ x2      x3       x4
+     │ Int64?  Int64?   Int64?
+─────┼─────────────────────────
+   1 │      1        2       3
+   2 │      2  missing       4
+   3 │      4        2       5
+
+julia> select_if(df1, !ismissing, 1, 0)
+3×2 DataFrame
+ Row │ x2      x4
+     │ Int64?  Int64?
+─────┼────────────────
+   1 │      1       3
+   2 │      2       4
+   3 │      4       5
+
+julia> pre1 = (function(col) return mean(skipmissing(col)) >= 4 end)
+
+julia> select_if(df1, pre1, 0)
+3×1 DataFrame
+ Row │ x4
+     │ Int64?
+─────┼────────
+   1 │      3
+   2 │      4
+   3 │      5
+
+"""
+function select_if(df, predicate, elementwise_or_not = true, any_or_all = true)
+    if typeof(predicate) == Vector{Bool}
+        indices = predicate
+    elseif elementwise_or_not == true
+        if any_or_all == true 
+            indices = map(x -> any(predicate, x), eachcol(df))
+        else
+            indices = map(x -> all(predicate, x), eachcol(df))
+        end
+    else
+       indices = predicate.(eachcol(df))
+    end
+    return df[:, indices]
 end
 
 
