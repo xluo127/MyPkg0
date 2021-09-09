@@ -160,7 +160,7 @@ Keyword arguments
 
 ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
-    -•  `df` is the DataFrame.
+    •  `df` is the DataFrame.
 
     •  `predicate` can be a predicate function for columns or a `Bool` `Vector` with the length of number of columns.
 
