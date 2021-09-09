@@ -155,6 +155,7 @@ end
 This function is aim to select `DataFrame` columns based on a predicate applied to the columns or a logical vector. 
 
 Keyword arguments
+
 ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
   •  `df` is the DataFrame.
@@ -168,7 +169,8 @@ Keyword arguments
    to the DataFrame when `elementwise_or_not` = `true`.
 
 
-Examples:
+Examples
+
 ≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
 julia> df1 = DataFrame([missing 1 2 3; missing 2 missing 4; 1 4 2 5], :auto)
@@ -225,8 +227,6 @@ function select_if(df, predicate, elementwise_or_not = true, any_or_all = true)
     end
     return df[:, indices]
 end
-
-
 
 
 
