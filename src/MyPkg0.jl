@@ -1,5 +1,7 @@
 module MyPkg0
 
+using DataFrames
+
 export sog, tmpsog, zo, zo1, zo3, newsog, newsog2, newsog3, newsog4, select_if
 """
     sog(x)
@@ -158,14 +160,14 @@ Keyword arguments
 
 ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
-  •  `df` is the DataFrame.
+    -•  `df` is the DataFrame.
 
-  •  `predicate` can be a predicate function for columns or a `Bool` `Vector` with the length of number of columns.
+    •  `predicate` can be a predicate function for columns or a `Bool` `Vector` with the length of number of columns.
 
-  •  `elementwise_or_not` takes a `Bool` value that is `true` in default. Change `elementwise_or_not` to `false` will
+    •  `elementwise_or_not` takes a `Bool` value that is `true` in default. Change `elementwise_or_not` to `false` will
    let the predicate apply to the DataFrame columnwise.
 
-  •  `any_or_all` also takes a `Bool` value with a default value `true` and it determinesto apply any or all predicate
+    •  `any_or_all` also takes a `Bool` value with a default value `true` and it determinesto apply any or all predicate
    to the DataFrame when `elementwise_or_not` = `true`.
 
 
