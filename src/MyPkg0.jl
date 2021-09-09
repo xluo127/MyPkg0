@@ -205,7 +205,7 @@ julia> select_if(df1, !ismissing, 1, 0)
 
 julia> pre1 = (function(col) return mean(skipmissing(col)) >= 4 end)
 
-julia> select_if(df1, pre1, elementwise_or_not = 0)
+julia> select_if(df1, pre1, 0)
 3×1 DataFrame
  Row │ x4
      │ Int64?
@@ -216,7 +216,7 @@ julia> select_if(df1, pre1, elementwise_or_not = 0)
 
 ```
 """
-function select_if(df::DataFrame, predicate, ;elementwise_or_not = true, any_or_all = true)
+function select_if(df::DataFrame, predicate, elementwise_or_not = true, any_or_all = true)
     if typeof(predicate) == Vector{Bool}
         indices = predicate
     elseif Bool(elementwise_or_not) == true
