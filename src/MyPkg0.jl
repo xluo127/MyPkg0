@@ -173,6 +173,7 @@ Examples
 
 ≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
+```
 julia> df1 = DataFrame([missing 1 2 3; missing 2 missing 4; 1 4 2 5], :auto)
 3×4 DataFrame
  Row │ x1       x2      x3       x4
@@ -202,7 +203,7 @@ julia> select_if(df1, !ismissing, 1, 0)
 
 julia> pre1 = (function(col) return mean(skipmissing(col)) >= 4 end)
 
-julia> select_if(df1, pre1, 0)
+julia> select_if(df1, pre1, elementwise_or_not = 0)
 3×1 DataFrame
  Row │ x4
      │ Int64?
@@ -211,12 +212,12 @@ julia> select_if(df1, pre1, 0)
    2 │      4
    3 │      5
 
-
+```
 """
-function select_if(df, predicate, elementwise_or_not = true, any_or_all = true)
+function select_if(df::DataFrame, predicate, ;elementwise_or_not = true, any_or_all = true)
     if typeof(predicate) == Vector{Bool}
         indices = predicate
-    elseif elementwise_or_not == true
+    elseif Bool(elementwise_or_not) == true
         if any_or_all == true 
             indices = map(x -> any(predicate, x), eachcol(df))
         else
