@@ -23,4 +23,6 @@ using Random
     #@time sog(rand(1:100, 10^6))
     #xxx = [round.(rand(10^6)), rand(1:10, 10^6), [randstring('a':'e', 2) for _ in 1:10^6]]
     #@time sog(xxx)
+
+    #df1 = DataFrame([missing 1 2 3; missing 2 missing 4; 1 4 2 5], :auto)
 end

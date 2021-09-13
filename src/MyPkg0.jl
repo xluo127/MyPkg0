@@ -232,23 +232,12 @@ function select_if(df::DataFrame, predicate, elementwise_or_not = true, any_or_a
 end
 
 
-Base.names1(df::AbstractDataFrame, cols::Colon=:) = names1(index(df))
-
-function Base.names1(df::AbstractDataFrame, cols)
-    nms = _names1(index(df))
-    idx = index(df)[cols]
-    idxs = idx isa Int ? (idx:idx) : idx
-    return [String(nms[i]) for i in idxs]
-end
-
-Base.names1(df::AbstractDataFrame, T::Type) =
-    [String(n) for (n, c) in pairs(eachcol(df)) if eltype(c) <: T]
-Base.names1(df::AbstractDataFrame, fun::Function) = filter!(fun, names1(df))
-
-# _names1 returns Vector{Symbol} without copying
-_names1(df::AbstractDataFrame) = _names1(index(df))
+#Base.names(df::AbstractDataFrame, predicate::Function) = names(df, predicate.(eachcol(df)))
+"""
 
 
+
+"""
 
 
 
