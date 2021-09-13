@@ -2,7 +2,7 @@ module MyPkg0
 
 using DataFrames
 
-export sog, tmpsog, zo, zo1, zo3, newsog, newsog2, newsog3, newsog4, select_if, names1
+export sog, tmpsog, zo, zo1, zo3, newsog, newsog2, newsog3, newsog4, select_if
 """
     sog(x)
 
@@ -232,12 +232,8 @@ function select_if(df::DataFrame, predicate, elementwise_or_not = true, any_or_a
 end
 
 
-#Base.names(df::AbstractDataFrame, predicate::Function) = names(df, predicate.(eachcol(df)))
-"""
+#Base.names(df::AbstractDataFrame, fun::Function) = typeof(fun) isa Regex ? filter!(fun, names(df)) : names(df, fun.(eachcol(df)))
 
-
-
-"""
 
 
 
