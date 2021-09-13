@@ -2,7 +2,7 @@ module MyPkg0
 
 using DataFrames
 
-export sog, tmpsog, zo, zo1, zo3, newsog, newsog2, newsog3, newsog4, select_if
+export sog, tmpsog, zo, zo1, zo3, newsog, newsog2, newsog3, newsog4, select_if, names1
 """
     sog(x)
 
@@ -230,6 +230,24 @@ function select_if(df::DataFrame, predicate, elementwise_or_not = true, any_or_a
     end
     return df[:, indices]
 end
+
+
+Base.names1(df::AbstractDataFrame, cols::Colon=:) = names1(index(df))
+
+function Base.names1(df::AbstractDataFrame, cols)
+    nms = _names1(index(df))
+    idx = index(df)[cols]
+    idxs = idx isa Int ? (idx:idx) : idx
+    return [String(nms[i]) for i in idxs]
+end
+
+Base.names1(df::AbstractDataFrame, T::Type) =
+    [String(n) for (n, c) in pairs(eachcol(df)) if eltype(c) <: T]
+Base.names1(df::AbstractDataFrame, fun::Function) = filter!(fun, names1(df))
+
+# _names1 returns Vector{Symbol} without copying
+_names1(df::AbstractDataFrame) = _names1(index(df))
+
 
 
 
